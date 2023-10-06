@@ -1,0 +1,6 @@
+data/*
+*.ipynb_checkpoints
+__pycache__
+train_MDD.ipynb
+VAE.ipynb
+VAE_LSTM.ipynb
