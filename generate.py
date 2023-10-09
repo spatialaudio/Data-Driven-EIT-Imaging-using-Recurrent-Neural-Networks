@@ -10,13 +10,13 @@ from tqdm import tqdm
 
 from support import rphi_to_xy
 
-n_datapoints = 250
-n_el = 16  # number of electrodes
+n_datapoints = 500
+n_el = 32  # number of electrodes
 h0 = 0.05
 r_obj = 0.4
 perm_obj = 100
 dist_exc = 8
-step_meas = 4
+step_meas = 1
 
 s_path = f"data/{n_el=}_{r_obj=}_{dist_exc=}_{step_meas=}/"
 
@@ -25,11 +25,11 @@ try:
 except BaseException:
     print(f"{s_path} already exist.")
 
-    
+
 θ = np.linspace(0, 2 * np.pi, n_datapoints)
 r = 0.5
 X, Y = rphi_to_xy(r, θ)
-    
+
 # create meshes
 mesh_obj = mesh.create(n_el, h0=h0)
 mesh_empty = mesh.create(n_el, h0=h0)
@@ -54,5 +54,7 @@ for x, y in tqdm(zip(X, Y)):
         h0=h0,
         v_empty=v_empty,
         v_obj=v_obj,
+        dist_exc=dist_exc,
+        step_meas=step_meas,
     )
     s_idx += 1
