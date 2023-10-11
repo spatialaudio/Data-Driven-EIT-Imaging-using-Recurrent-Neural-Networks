@@ -10,13 +10,13 @@ from tqdm import tqdm
 
 from support import rphi_to_xy
 
-n_datapoints = 500
+n_datapoints = 1000
 n_el = 32  # number of electrodes
-h0 = 0.05
-r_obj = 0.4
+h0 = 0.025
+r_obj = 0.3
 perm_obj = 100
 dist_exc = 8
-step_meas = 1
+step_meas = 4
 
 s_path = f"data/{n_el=}_{r_obj=}_{dist_exc=}_{step_meas=}/"
 
