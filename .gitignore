@@ -2,5 +2,4 @@ data/*
 *.ipynb_checkpoints
 __pycache__
 train_MDD.ipynb
-VAE_LSTM.ipynb
 images/n_el*.png
