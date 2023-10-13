@@ -1,5 +1,4 @@
 data/*
 *.ipynb_checkpoints
 __pycache__
-train_MDD.ipynb
 images/n_el*.png

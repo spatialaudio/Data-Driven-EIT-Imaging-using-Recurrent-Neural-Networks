@@ -8,7 +8,7 @@ from pyeit.mesh import PyEITMesh
 from pyeit.mesh.wrapper import PyEITAnomaly_Circle
 from tqdm import tqdm
 
-from support import rphi_to_xy
+from codes.support import rphi_to_xy
 
 n_datapoints = 1000
 n_el = 32  # number of electrodes
