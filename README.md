@@ -1,7 +1,7 @@
 # EIT_trajectory_prediction_VAE-LSTM
 Predicting object motion by using a VAE and LSTM.
 
-## Architecture of the VAE-LSTM Model
+## Architectures of the VAE-LSTM Models
 
 ### V1
 If the training is successful, the model should be able to reconstruct voltage data more precisely because a memory is included in the VAE.
@@ -18,9 +18,10 @@ _based on: [1]_
 - The VAE model learns an embedding scheme that can infer the features of the training data.
 
 ![VAE_LSTM_V2](images/VAE_LSTM_V2.png)
-___
-[1] Lin, Shuyu, et al. "Anomaly detection for time series using vae-lstm hybrid model." ICASSP 2020-2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). Ieee, 2020.
 
 ### V3
 
 ![VAE_LSTM_V3](images/VAE_LSTM_V3.png)
+
+___
+[1] Lin, Shuyu, et al. "Anomaly detection for time series using vae-lstm hybrid model." ICASSP 2020-2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). Ieee, 2020.
