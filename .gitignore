@@ -1,4 +1,6 @@
 data/*
+data_thorax/*
+*Copy*.py
 *.ipynb_checkpoints
 __pycache__
 images/n_el*.png

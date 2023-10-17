@@ -18,6 +18,10 @@ perm_obj = 100
 dist_exc = 8
 step_meas = 4
 
+# create meshes
+mesh_obj = mesh.create(n_el, h0=h0)
+mesh_empty = mesh.create(n_el, h0=h0)
+
 for r_obj in [0.3,0.35,0.4]:
     
     s_path = f"data/{h0=}_{n_el=}_{r_obj=}_{dist_exc=}_{step_meas=}/"
@@ -30,9 +34,6 @@ for r_obj in [0.3,0.35,0.4]:
     θ = np.linspace(0, 2 * np.pi, n_datapoints)
     r = 0.5
     X, Y = rphi_to_xy(r, θ)
-    # create meshes
-    mesh_obj = mesh.create(n_el, h0=h0)
-    mesh_empty = mesh.create(n_el, h0=h0)
 
     # generate data
     s_idx = 0

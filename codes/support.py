@@ -3,6 +3,7 @@ import numpy as np
 import pyeit.eit.greit as greit
 import pyeit.eit.protocol as protocol
 import pyeit.mesh as mesh
+from pyeit.mesh.shape import thorax
 from pyeit.mesh import PyEITMesh
 from sciopy import plot_mesh
 
@@ -63,7 +64,30 @@ def show_mesh(tmp: np.lib.npyio.NpzFile, return_mesh: bool = False) -> PyEITMesh
     plot_mesh(mesh_obj)
     if return_mesh:
         return mesh_obj
+    
 
+def show_mesh_thorax(tmp: np.lib.npyio.NpzFile, return_mesh: bool = False) -> PyEITMesh:
+    """
+    Show the mesh of a single sample.
+    Return the mesh if return_mesh==True.
+
+    Parameters
+    ----------
+    tmp : np.lib.npyio.NpzFile
+        loaded sample by np.load()
+    return_mesh : bool, optional
+        return PyEITMesh object, by default False
+
+    Returns
+    -------
+    PyEITMesh
+        PyEITMesh object
+    """
+    mesh_obj = mesh.create(tmp["n_el"], h0=tmp["h0"], fd=thorax)
+    mesh_obj = mesh.set_perm(mesh_obj, anomaly=tmp["anomaly"].tolist(), background=1.0)
+    plot_mesh(mesh_obj)
+    if return_mesh:
+        return mesh_obj
 
 def get_permele_diff(
     tmp_1: np.lib.npyio.NpzFile,
