@@ -66,7 +66,7 @@ if os.path.isfile("saves/" + load_path.split("/")[1] + "_v_data.npy") == False:
 
     for i in tqdm(range(len(os.listdir(load_path)) - 1)):
         tmp_1 = np.load(load_path + "sample_{:06d}.npz".format(i), allow_pickle=True)
-        v_data.append(norm_data(tmp_1["v_obj"]))
+        v_data.append(tmp_1["v_obj"])#norm_data
     v_data = np.array(v_data)
 
     ae_v = list()
