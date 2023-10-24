@@ -11,9 +11,9 @@ from tqdm import tqdm
 from codes.support import rphi_to_xy
 
 n_datapoints = 1000
-n_el = 32  # number of electrodes
-h0 = 0.025
-r_obj = 0.3
+n_el = 16  # number of electrodes
+h0 = 0.05
+#r_obj = 0.3
 perm_obj = 100
 dist_exc = 8
 step_meas = 4
@@ -22,7 +22,7 @@ step_meas = 4
 mesh_obj = mesh.create(n_el, h0=h0)
 mesh_empty = mesh.create(n_el, h0=h0)
 
-for r_obj in [0.3,0.35,0.4]:
+for r_obj in [0.3]:
     
     s_path = f"data/{h0=}_{n_el=}_{r_obj=}_{dist_exc=}_{step_meas=}/"
 

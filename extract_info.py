@@ -11,9 +11,9 @@ from codes.support import (
 # to save the plots, set this to true
 save_imgs = True
 # Continue with n_el=32
-n_el = 32
-r_obj = 0.3
-h0 = 0.025
+n_el = 16
+r_obj = 0.4
+h0 = 0.05
 dist_exc = 8
 step_meas = 4
 
