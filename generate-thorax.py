@@ -22,17 +22,17 @@ noise_div = 200
 
 n_el = 16  # number of electrodes
 h0 = 0.025
-perm_obj = 100
+perm_obj = 10.0
 dist_exc = 8
 step_meas = 4
-
+noise = True
 
 r_up = np.linspace(r_min, r_max, splts-1, endpoint=False)
 r_down = np.linspace(r_max, r_min, splts-1, endpoint=False)
 
 r_period = np.concatenate((r_up,r_down))
 
-s_path = f"data_thorax/{h0=}_{n_el=}_{r_min=}_{r_max=}_{dist_exc=}_{step_meas=}/"
+s_path = f"data_thorax/{h0=}_{n_el=}_{r_min=}_{r_max=}_{dist_exc=}_{step_meas=}{noise=}/"
 
 try:
     os.mkdir(s_path)
@@ -55,6 +55,8 @@ for _ in range(n_diff_noises):
         mesh_obj = mesh.set_perm(
             mesh_obj, anomaly=[lung_anomaly_l, lung_anomaly_r], background=1.0
         )
+        if noise:
+            mesh_obj.perm = mesh_obj.perm + np.random.rand(len(mesh_obj.perm_array))
         protocol_obj = protocol.create(
             n_el, dist_exc=dist_exc, step_meas=step_meas, parser_meas="std"
         )
@@ -65,7 +67,7 @@ for _ in range(n_diff_noises):
         np.savez(
             s_path + "sample_{:06d}.npz".format(s_idx),
             anomaly=[lung_anomaly_l, lung_anomaly_r],
-            perm_array=mesh_obj.perm_array,
+            perm_array=mesh_obj.perm,
             n_el=n_el,
             h0=h0,
             v_empty=v_empty,

@@ -42,7 +42,7 @@ def get_info(tmp: np.lib.npyio.NpzFile) -> None:
         print(key, ":", tmp[key])
 
 
-def show_mesh(tmp: np.lib.npyio.NpzFile, return_mesh: bool = False) -> PyEITMesh:
+def show_mesh(tmp: np.lib.npyio.NpzFile, return_mesh: bool = False, mesh_form:str="circle") -> PyEITMesh:
     """
     Show the mesh of a single sample.
     Return the mesh if return_mesh==True.
@@ -53,15 +53,22 @@ def show_mesh(tmp: np.lib.npyio.NpzFile, return_mesh: bool = False) -> PyEITMesh
         loaded sample by np.load()
     return_mesh : bool, optional
         return PyEITMesh object, by default False
+    mesh_form : str, optional
+        select mesh border shape, by default circle
 
     Returns
     -------
     PyEITMesh
         PyEITMesh object
     """
-    mesh_obj = mesh.create(tmp["n_el"], h0=tmp["h0"])
+    if mesh_form == "circle":
+        mesh_obj = mesh.create(tmp["n_el"], h0=tmp["h0"])
+    if mesh_form == "thorax":
+        mesh_obj = mesh.create(tmp["n_el"], h0=tmp["h0"], fd=thorax)
+
     mesh_obj = mesh.set_perm(mesh_obj, anomaly=tmp["anomaly"].tolist(), background=1.0)
     plot_mesh(mesh_obj)
+        
     if return_mesh:
         return mesh_obj
     
