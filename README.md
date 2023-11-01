@@ -21,7 +21,7 @@ _based on: [1]_
 
 #### Applied to lung cyclus
 
-![SegmentLocal](breathing.gif "segment")
+![breathing](codes/breathing.gif "segment")
 
 
 ### V3
