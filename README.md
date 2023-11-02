@@ -23,11 +23,6 @@ _based on: [1]_
 
 ![VAE_LSTM_V2](images/VAE_LSTM_V2.png)
 
-#### Applied to lung cyclus
-
-![breathing](codes/breathing.gif "segment")
-
-
 ### V3
 
 ![VAE_LSTM_V3](images/VAE_LSTM_V3.png)
