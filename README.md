@@ -3,7 +3,7 @@ Predicting object motion by using a VAE and LSTM.
 
 ![breathing](codes/breathing.gif "breathing")
 
-![r_traj](codes/breathing.gif "r_traj")
+![r_traj](codes/r_traj.gif "r_traj")
 
 ## Architectures of the VAE-LSTM Models
 
