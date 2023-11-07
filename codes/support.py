@@ -7,6 +7,22 @@ from pyeit.mesh.shape import thorax
 from pyeit.mesh import PyEITMesh
 from sciopy import plot_mesh
 
+def plot_reconstruction(mesh_obj, ds, title="reconstruction", n_el=16):
+    el_pos = np.arange(n_el)
+    pts = mesh_obj.node
+    tri = mesh_obj.element
+    x, y = pts[:, 0], pts[:, 1]
+
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    plt.title(title)
+    im = ax.tripcolor(x, y, tri, ds, shading="flat")
+    for i, e in enumerate(el_pos):
+        ax.annotate(str(i + 1), xy=(x[e], y[e]), color="r")
+    ax.set_aspect("equal")
+    ax.set_ylim([-1.2, 1.2])
+    ax.set_xlim([-1.2, 1.2])
+    fig.set_size_inches(6, 6)
 
 def rphi_to_xy(r, angle):
     """

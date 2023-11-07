@@ -6,6 +6,9 @@ from tensorflow.keras.metrics import Mean
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
 
+    
+latent_dim = 8
+
 class Sampling(layers.Layer):
     def call(self, inputs):
         z_mean, z_log_var = inputs
@@ -13,11 +16,9 @@ class Sampling(layers.Layer):
         dim = tf.shape(z_mean)[1]
         epsilon = tf.random.normal(shape=(batch, dim))
         return z_mean + tf.exp(0.5 * z_log_var) * epsilon
-    
-latent_dim = 8
 
 
-def encoder_model(inp_shape=(1912,), latent_dim=latent_dim):
+def encoder_model_thorax(inp_shape=(1912,), latent_dim=latent_dim):
     encoder_inputs = keras.Input(shape=inp_shape)
     x = layers.Reshape((1912, 1))(encoder_inputs)
     x = layers.ZeroPadding1D((488, 0))(x)
@@ -54,7 +55,7 @@ def encoder_model(inp_shape=(1912,), latent_dim=latent_dim):
 
     return encoder_inputs, z_mean, z_log_var, z
 
-def decoder_model(latent_dim=latent_dim):
+def decoder_model_thorax(latent_dim=latent_dim):
     latent_inputs = keras.Input(shape=(latent_dim,), name="z_sampling")
 
     x = layers.Dense(16, activation="relu")(latent_inputs)
@@ -153,15 +154,15 @@ class VAE(Model):
         return reconstruction
     
     
-def vae_model():
-    encoder_inputs, z_mean, z_log_var, z = encoder_model()
+def vae_thorax():
+    encoder_inputs, z_mean, z_log_var, z = encoder_model_thorax()
     encoder = Model(encoder_inputs, (z_mean, z_log_var, z), name="VAE_encoder")
     encoder.summary()
 
-    decoder_inputs, decoder_outputs = decoder_model()
+    decoder_inputs, decoder_outputs = decoder_model_thorax()
     decoder = Model(decoder_inputs, decoder_outputs, name="VAE_decoder")
     decoder.summary()
 
     return VAE(encoder, decoder)
 
-vae = vae_model()
+vae = vae_thorax()
