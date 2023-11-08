@@ -7,6 +7,11 @@ from pyeit.mesh.shape import thorax
 from pyeit.mesh import PyEITMesh
 from sciopy import plot_mesh
 
+
+def perm_deviation(perm_true, perm_rec, brdr=5):
+    dev = len(np.argwhere(perm_true > brdr)) - len(np.argwhere(perm_rec > brdr))
+    return dev
+
 def plot_reconstruction(mesh_obj, ds, title="reconstruction", n_el=16):
     el_pos = np.arange(n_el)
     pts = mesh_obj.node
