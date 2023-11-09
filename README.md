@@ -1,5 +1,13 @@
-# EIT_trajectory_prediction_VAE-LSTM
-Predicting object motion by using a VAE and LSTM.
+# Absolute EIT Reconstruction using a VAE-LSTM Model Approach
+
+**Abstract:** Deep neural network (DNN) architectures are
+applied more frequently in the field of electrical impedance
+tomography (EIT). Especially, absolute image reconstruc-
+tion benefits from the possibilities of machine learning
+(ML). This contribution demonstrates, how absolute im-
+age reconstruction can be more reliable through the use of
+a combination of Long Short-Term Memory (LSTM) and
+Variational Autoencoder (VAE).
 
 ![breathing](codes/breathing.gif "breathing")
 

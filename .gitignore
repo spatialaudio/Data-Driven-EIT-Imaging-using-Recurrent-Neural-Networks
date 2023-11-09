@@ -4,4 +4,5 @@ data_thorax/*
 *.ipynb_checkpoints
 __pycache__
 images/n_el*.png
-
+*-Copy*.ipynb
+codes/archive
