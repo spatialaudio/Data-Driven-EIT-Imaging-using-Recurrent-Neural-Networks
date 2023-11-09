@@ -12,6 +12,7 @@ def perm_deviation(perm_true, perm_rec, brdr=5):
     dev = len(np.argwhere(perm_true > brdr)) - len(np.argwhere(perm_rec > brdr))
     return dev
 
+
 def plot_reconstruction(mesh_obj, ds, title="reconstruction", n_el=16):
     el_pos = np.arange(n_el)
     pts = mesh_obj.node
@@ -28,6 +29,7 @@ def plot_reconstruction(mesh_obj, ds, title="reconstruction", n_el=16):
     ax.set_ylim([-1.2, 1.2])
     ax.set_xlim([-1.2, 1.2])
     fig.set_size_inches(6, 6)
+
 
 def rphi_to_xy(r, angle):
     """
@@ -63,7 +65,9 @@ def get_info(tmp: np.lib.npyio.NpzFile) -> None:
         print(key, ":", tmp[key])
 
 
-def show_mesh(tmp: np.lib.npyio.NpzFile, return_mesh: bool = False, mesh_form:str="circle") -> PyEITMesh:
+def show_mesh(
+    tmp: np.lib.npyio.NpzFile, return_mesh: bool = False, mesh_form: str = "circle"
+) -> PyEITMesh:
     """
     Show the mesh of a single sample.
     Return the mesh if return_mesh==True.
@@ -89,10 +93,10 @@ def show_mesh(tmp: np.lib.npyio.NpzFile, return_mesh: bool = False, mesh_form:st
 
     mesh_obj = mesh.set_perm(mesh_obj, anomaly=tmp["anomaly"].tolist(), background=1.0)
     plot_mesh(mesh_obj)
-        
+
     if return_mesh:
         return mesh_obj
-    
+
 
 def show_mesh_thorax(tmp: np.lib.npyio.NpzFile, return_mesh: bool = False) -> PyEITMesh:
     """
@@ -116,6 +120,7 @@ def show_mesh_thorax(tmp: np.lib.npyio.NpzFile, return_mesh: bool = False) -> Py
     plot_mesh(mesh_obj)
     if return_mesh:
         return mesh_obj
+
 
 def get_permele_diff(
     tmp_1: np.lib.npyio.NpzFile,

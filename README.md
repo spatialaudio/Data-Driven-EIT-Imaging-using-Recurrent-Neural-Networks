@@ -9,10 +9,9 @@ age reconstruction can be more reliable through the use of
 a combination of Long Short-Term Memory (LSTM) and
 Variational Autoencoder (VAE).
 
-![breathing](codes/breathing.gif "breathing")
+![breathing](images/breathing.gif "breathing")
 
-![r_traj](codes/r_traj.gif "r_traj")
-
+<!---
 ## Architectures of the VAE-LSTM Models
 
 ### V1
@@ -37,3 +36,4 @@ _based on: [1]_
 
 ___
 [1] Lin, Shuyu, et al. "Anomaly detection for time series using vae-lstm hybrid model." ICASSP 2020-2020 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). Ieee, 2020.
+--->

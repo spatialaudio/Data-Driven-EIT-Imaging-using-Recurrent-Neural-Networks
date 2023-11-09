@@ -12,9 +12,9 @@ from tqdm import tqdm
 from codes.support import rphi_to_xy
 
 n_diff_noises = 100
-r_min = 0.1 # min lung radius
-r_max = 0.4 # max lung radius
-splts = 51 # splts*2-1 is the number or radial steps
+r_min = 0.1  # min lung radius
+r_max = 0.4  # max lung radius
+splts = 51  # splts*2-1 is the number or radial steps for T/2
 
 print(f"num of samples = {n_diff_noises*(splts*2-2)}")
 
@@ -25,13 +25,16 @@ h0 = 0.05
 perm_obj = 10.0
 dist_exc = 8
 step_meas = 4
-noise = False
-ndiv = 1
+noise = True
+ndiv = 2
 
-r_up = np.linspace(r_min, r_max, splts-1, endpoint=False)
-r_down = np.linspace(r_max, r_min, splts-1, endpoint=False)
+# inhale phase 0...T/2
+r_up = np.linspace(r_min, r_max, splts - 1, endpoint=False)
+# exhlae phase T/2...T
+r_down = np.linspace(r_max, r_min, splts - 1, endpoint=False)
 
-r_period = np.concatenate((r_up,r_down))
+# T -> full lung cyclus.
+r_period = np.concatenate((r_up, r_down))
 
 s_path = f"data_thorax/{h0=}_{n_el=}_{r_min=}_{r_max=}_{dist_exc=}_{step_meas=}{noise=}{ndiv=}/"
 
@@ -44,11 +47,13 @@ except BaseException:
 mesh_obj = mesh.create(n_el, h0=h0, fd=thorax)
 mesh_empty = mesh.create(n_el, h0=h0, fd=thorax)
 
+# save index
 s_idx = 0
+
 for _ in range(n_diff_noises):
     # create noise vector
-    r_noise = np.random.random(splts*2-2)/noise_div
-    for lung_r in tqdm(r_period+r_noise):
+    r_noise = np.random.random(splts * 2 - 2) / noise_div
+    for lung_r in tqdm(r_period + r_noise):
         # generate data
         lung_anomaly_r = PyEITAnomaly_Circle(center=[0.5, 0], r=lung_r, perm=perm_obj)
         lung_anomaly_l = PyEITAnomaly_Circle(center=[-0.45, 0], r=lung_r, perm=perm_obj)
@@ -57,7 +62,9 @@ for _ in range(n_diff_noises):
             mesh_obj, anomaly=[lung_anomaly_l, lung_anomaly_r], background=1.0
         )
         if noise:
-            mesh_obj.perm = mesh_obj.perm + (np.random.rand(len(mesh_obj.perm_array))/ndiv)
+            mesh_obj.perm = mesh_obj.perm + (
+                np.random.rand(len(mesh_obj.perm_array)) / ndiv
+            )
         protocol_obj = protocol.create(
             n_el, dist_exc=dist_exc, step_meas=step_meas, parser_meas="std"
         )

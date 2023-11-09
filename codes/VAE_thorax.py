@@ -6,8 +6,9 @@ from tensorflow.keras.metrics import Mean
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
 
-    
+
 latent_dim = 8
+
 
 class Sampling(layers.Layer):
     def call(self, inputs):
@@ -16,6 +17,7 @@ class Sampling(layers.Layer):
         dim = tf.shape(z_mean)[1]
         epsilon = tf.random.normal(shape=(batch, dim))
         return z_mean + tf.exp(0.5 * z_log_var) * epsilon
+
 
 class VAE(Model):
     def __init__(self, encoder, decoder, **kwargs):
@@ -58,11 +60,13 @@ class VAE(Model):
             "reconstruction_loss": self.reconstruction_loss_tracker.result(),
             "kl_loss": self.kl_loss_tracker.result(),
         }
-    
+
     def call(self, inputs):
         z_mean, z_log_var, z = self.encoder(inputs)
         reconstruction = self.decoder(z)
-        reconstruction_loss = tf.reduce_mean(tf.losses.mean_squared_error(inputs, reconstruction))
+        reconstruction_loss = tf.reduce_mean(
+            tf.losses.mean_squared_error(inputs, reconstruction)
+        )
         reconstruction_loss *= 1912
         kl_loss = 1 + z_log_var - tf.square(z_mean) - tf.exp(z_log_var)
         kl_loss = tf.reduce_mean(kl_loss)
@@ -74,6 +78,7 @@ class VAE(Model):
             reconstruction_loss, name="reconstruction_loss", aggregation="mean"
         )
         return reconstruction
+
 
 def encoder_model_thorax(inp_shape=(1912,), latent_dim=latent_dim):
     encoder_inputs = keras.Input(shape=inp_shape)
@@ -111,6 +116,7 @@ def encoder_model_thorax(inp_shape=(1912,), latent_dim=latent_dim):
     z = Sampling(name="z")([z_mean, z_log_var])
 
     return encoder_inputs, z_mean, z_log_var, z
+
 
 def decoder_model_thorax(latent_dim=latent_dim):
     latent_inputs = keras.Input(shape=(latent_dim,), name="z_sampling")
@@ -152,8 +158,7 @@ def decoder_model_thorax(latent_dim=latent_dim):
 
     return latent_inputs, decoder_outputs
 
-    
-    
+
 def vae_thorax():
     encoder_inputs, z_mean, z_log_var, z = encoder_model_thorax()
     encoder = Model(encoder_inputs, (z_mean, z_log_var, z), name="VAE_encoder")
@@ -164,5 +169,6 @@ def vae_thorax():
     decoder.summary()
 
     return VAE(encoder, decoder)
+
 
 vae = vae_thorax()

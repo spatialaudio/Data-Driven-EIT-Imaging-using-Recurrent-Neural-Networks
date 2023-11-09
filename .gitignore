@@ -6,3 +6,7 @@ __pycache__
 images/n_el*.png
 *-Copy*.ipynb
 codes/archive
+extract_info.py
+generate.py
+codes/pred_circle*.ipynb
+images/r_traj.gif

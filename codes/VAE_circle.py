@@ -6,6 +6,7 @@ from tensorflow.keras.metrics import Mean
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
 
+
 class Sampling(layers.Layer):
     def call(self, inputs):
         z_mean, z_log_var = inputs
@@ -13,7 +14,8 @@ class Sampling(layers.Layer):
         dim = tf.shape(z_mean)[1]
         epsilon = tf.random.normal(shape=(batch, dim))
         return z_mean + tf.exp(0.5 * z_log_var) * epsilon
-    
+
+
 latent_dim = 8
 
 
@@ -54,6 +56,7 @@ def encoder_model_circle(inp_shape=(2821,), latent_dim=latent_dim):
 
     return encoder_inputs, z_mean, z_log_var, z
 
+
 def decoder_model_circle(latent_dim=latent_dim):
     latent_inputs = keras.Input(shape=(latent_dim,), name="z_sampling")
 
@@ -93,6 +96,7 @@ def decoder_model_circle(latent_dim=latent_dim):
     decoder_outputs = layers.Flatten()(x)
 
     return latent_inputs, decoder_outputs
+
 
 class VAE(Model):
     def __init__(self, encoder, decoder, **kwargs):
@@ -135,7 +139,7 @@ class VAE(Model):
             "reconstruction_loss": self.reconstruction_loss_tracker.result(),
             "kl_loss": self.kl_loss_tracker.result(),
         }
-    
+
     def call(self, inputs):
         z_mean, z_log_var, z = self.encoder(inputs)
         reconstruction = self.decoder(z)
@@ -151,8 +155,8 @@ class VAE(Model):
             reconstruction_loss, name="reconstruction_loss", aggregation="mean"
         )
         return reconstruction
-    
-    
+
+
 def vae_circle():
     encoder_inputs, z_mean, z_log_var, z = encoder_model_circle()
     encoder = Model(encoder_inputs, (z_mean, z_log_var, z), name="VAE_encoder")
@@ -163,5 +167,6 @@ def vae_circle():
     decoder.summary()
 
     return VAE(encoder, decoder)
+
 
 vae = vae_circle()
