@@ -9,7 +9,9 @@ reconstruction can be more reliable through the use of
 a combination of Long Short-Term Memory (LSTM) and
 Variational Autoencoder (VAE).
 
-![breathing](images/breathing.gif "breathing")
+<p align="center">
+  <img src="images/breathing.gif">
+</p>
 
 <!---
 ## Architectures of the VAE-LSTM Models
