@@ -2,10 +2,10 @@
 
 **Abstract:** Deep neural network (DNN) architectures are
 applied more frequently in the field of electrical impedance
-tomography (EIT). Especially, absolute image reconstruc-
-tion benefits from the possibilities of machine learning
-(ML). This contribution demonstrates, how absolute im-
-age reconstruction can be more reliable through the use of
+tomography (EIT). Especially, absolute image reconstruction
+benefits from the possibilities of machine learning
+(ML). This contribution demonstrates, how absolute image
+reconstruction can be more reliable through the use of
 a combination of Long Short-Term Memory (LSTM) and
 Variational Autoencoder (VAE).
 
@@ -15,7 +15,7 @@ Variational Autoencoder (VAE).
 ## Architectures of the VAE-LSTM Models
 
 ### V1
-If the training is successful, the model should be able to reconstruct voltage data more precisely because a memory is included in the VAE.
+If the training is successful, the model should be able to reconstruct voltage data more precisely because memory is included in the VAE.
 
 ![VAE_LSTM](images/VAE_LSTM.png)
 
