@@ -12,6 +12,10 @@ Variational Autoencoder (VAE).
 <p align="center">
   <img src="images/breathing.gif">
 </p>
+<p align="center">
+  Test
+</p>
+
 
 <!---
 ## Architectures of the VAE-LSTM Models

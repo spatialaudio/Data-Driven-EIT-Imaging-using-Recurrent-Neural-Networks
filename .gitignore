@@ -10,3 +10,5 @@ extract_info.py
 generate.py
 codes/pred_circle*.ipynb
 images/r_traj.gif
+images/*.png
+images/LSTM_VAE_V3.pdf
