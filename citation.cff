@@ -1,12 +1,12 @@
 cff-version: 1.2.0
 title: >-
-  Absolute EIT Reconstruction using a VAE-LSTM Model Approach
+  Improved Data-Driven EIT Imaging for Temporal Sequences using Recurrent Neural Networks
 message: >-
   If you use this repository, please cite it using the
   metadata from this file.
 type: software
 authors:
-  - given-names: Jacob Peter
+  - given-names: Jacob
     family-names: Thönes
     email: jacob.thoenes@uni-rostock.de
     affiliation: Universität Rostock
@@ -19,4 +19,4 @@ keywords:
   - LSTM
 license: MIT
 version: 1.0
-date-released: '2023-12-01'
+date-released: '2023-12-30'
