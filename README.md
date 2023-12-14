@@ -1,13 +1,15 @@
-# Absolute EIT Reconstruction using a VAE-LSTM Model Approach
+# Improved Data-Driven EIT Imaging for Temporal Sequences using Recurrent Neural Networks
 
-**Abstract:** Deep neural network (DNN) architectures are
-applied more frequently in the field of electrical impedance
-tomography (EIT). Especially, absolute image reconstruction
-benefits from the possibilities of machine learning
-(ML). This contribution demonstrates, how absolute image
-reconstruction can be more reliable through the use of
-a combination of Long Short-Term Memory (LSTM) and
-Variational Autoencoder (VAE).
+**Abstract:** Data-driven reconstruction techniques using
+deep neural network (DNN) architectures are applied more
+frequently in the field of electrical impedance tomography
+(EIT). The solution of the underlying ill-posed inverse problem
+may benefit from the possibilities of machine learning
+(ML). This contribution demonstrates, how knowledge on
+recurring sequences of EIT measurements (e.g. breathing
+cycles) may be used to improve the reconstruction. A combination
+of a Long Short-Term Memory (LSTM) and an
+Variational Autoencoder (VAE) is used.
 
 <p align="center">
   <img src="images/breathing.gif">
