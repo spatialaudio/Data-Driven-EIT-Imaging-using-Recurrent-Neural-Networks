@@ -11,7 +11,7 @@ authors:
     email: jacob.thoenes@uni-rostock.de
     affiliation: Universität Rostock
     orcid: 'https://orcid.org/0000-0003-2826-5281'
-repository-code: 'https://github.com/spatialaudio/EIT_abs_rec_VAE-LSTM'
+repository-code: 'https://github.com/spatialaudio/Data-Driven-EIT-Imaging-using-Recurrent-Neural-Networks'
 url: 'https://github.com/spatialaudio/EIT_abs_rec_VAE-LSTM'
 keywords:
   - EIT
